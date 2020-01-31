@@ -24,7 +24,19 @@ namespace AnotherSimCore
             Id = id;
         }
 
+        public void toRecive(Message msg)
+        {
+            storeMessage.Add(msg);
+        }
 
+        public void createMessage(int idDestination, string text)
+        {
+            if (idDestination == Id)
+                throw new Exception("idDestination == Id");
+            Message msg = new Message(Id, idDestination);
+            msg.Text = text;
+            storeMessage.Add(msg);
+        }
 
     }
 }
