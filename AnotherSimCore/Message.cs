@@ -6,8 +6,8 @@ namespace AnotherSimCore
 {
     public class Message
     {
-        int fromNode;
-        int toNode;
+        public int FromNode { get; }
+        public int ToNode { get; }
         public string Text { get; set; }
 
 
