@@ -13,8 +13,8 @@ namespace AnotherSimCore
 
         public Message(int from, int to)
         {
-            fromNode = from;
-            toNode = to;
+            FromNode = from;
+            ToNode = to;
         }
     }
 }
