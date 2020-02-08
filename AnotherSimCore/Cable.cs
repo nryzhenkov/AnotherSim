@@ -6,15 +6,15 @@ namespace AnotherSimCore
 {
     public class Cable
     {
-        public int FirstNode { get; }
-        public int SecondNode { get; }
+        public Node FirstNode { get; }
+        public Node SecondNode { get; }
         public bool isAlive { get; private set; }
 
         public void toBreak()
         {
             isAlive = false;
         }
-        public Cable(int first, int second) {
+        public Cable(Node first, Node second) {
             if (first == second)
                 throw new Exception("first == second");
             FirstNode = first;
