@@ -8,6 +8,7 @@ namespace AnotherSimCore
         public int Id { get; }
         Cable connectedCable;
         List<Message> storeMessage = new List<Message>();
+        PathTable path = new PathTable();
         public Cable ConnectedCable
         {
             get { return connectedCable; }
@@ -22,14 +23,20 @@ namespace AnotherSimCore
         public Node(int id)
         {
             Id = id;
+            
         }
 
+        private void AddNextNode()
+        {
+            if(connectedCable != null)
+                path.Add(connectedCable.SecondNode, connectedCable.SecondNode);
+        }
         public void toSend()
         {
             Message msg = findFirstMessageForSend();
             if(msg != null)
             {
-                // TODO: realization functional of transport message
+                // TODO: realization functional of transport message 
             }
             DeleteMessgae(msg);
         }
@@ -42,7 +49,7 @@ namespace AnotherSimCore
         {
             foreach(Message msg in storeMessage)
             {
-                if (msg.FromNode == Id)
+                if (msg.FromNode == this)
                     return msg;
             }
             return null;
@@ -52,11 +59,11 @@ namespace AnotherSimCore
             storeMessage.Add(msg);
         }
 
-        public void createMessage(int idDestination, string text)
+        public void createMessage(Node idDestination, string text)
         {
-            if (idDestination == Id)
+            if (idDestination == this)
                 throw new Exception("idDestination == Id");
-            Message msg = new Message(Id, idDestination);
+            Message msg = new Message(this, idDestination);
             msg.Text = text;
             storeMessage.Add(msg);
         }
